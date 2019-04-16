@@ -1,0 +1,53 @@
+{% extends 'blog/layout.html' %}  {# '/blog/layout.html'로 하면 오류 #}
+
+{% block content %}
+    <form>
+    <fieldset>
+    <table>
+    <tbody>
+        <tr>
+            <td>게시자</td>
+            <td><input type="text" value="{{ post.author }}"></td>
+        </tr>
+        <tr>
+            <td>제목</td>
+            <td><input type="text" value="{{ post.title }}" style="width:300px;"></td>
+        </tr>
+        <tr>
+            <td>내용</td>
+            <td><textarea style="width: 400px; height: 200px; overflow: visible;">{{ post.content }}</textarea></td>
+        </tr>
+        <tr>
+            <td>게시 일시</td><td><input type="text" value="{{ post.created }}"></td>
+        </tr>
+        <tr>
+            <td>수정 일시</td><td><input type="text" value="{{ post.updated_at }}"></td>
+        </tr>
+        <tr>
+            <td>태그 집합</td><td><input type="text" value="{{ post.tagged }}"></td>
+        </tr>
+    </tbody>
+    </table>
+    </fieldset>
+    </form> <br/>
+
+    {# https://python.bakyeono.net/chapter-7-2.html #}
+        `for key, value in my_tag.items`:
+        {% for key, value in my_tag.items %}
+            {% if value > 0 %}
+                <input type="checkbox" name={{ key }} checked>
+            {% else %}
+                <input type="checkbox" name={{ key }}>
+            {% endif %}
+            <label for={{ key }}> {{ key }} </label>
+        {% endfor %} <br/>
+        <hr>
+
+    post.tagged: {{ post.tagged }} <br/>
+    post.tags.all: {{ post.tags.all }} <br/><br/>
+
+    `for key, value in my_tag.items`: <br/>
+    {% for key, value in my_tag.items %}
+        키: {{ key }} 값: {{ value }} <br/>
+    {% endfor %} <br/><br/>
+{% endblock content %}
